@@ -1,0 +1,146 @@
+<html>
+	<head>
+		<title>Deep Learning Demo</title>
+
+		<meta http-equiv = "X-UA-Compatible" content="IE=edge">
+		<meta charset = "utf-8">
+		<meta name = "viewport" content = "width=device-width, initial-scale=1">
+<style type = "text/css">
+a:link{color:white;}
+a:visited{color:white;}
+a:active{color:white;}
+a:hover{color:white;}
+</style>
+<style>
+* {
+	box-sizing: border-box;
+}
+body{
+	font-family : cursive, "Malgun Gothic", serif;
+}
+header{
+	background-color: #ccc;
+	padding:30px;
+	text-align:center;
+	font-size:35px;
+	color:black;
+}
+nav{
+	float:left;
+	width:20%;
+	height:600px;	
+	background:#666;
+	font-size:15px;
+	padding:20px;
+}
+nav ul{
+	list-style-type:none;
+	padding:10px;
+}
+.cities{
+	background-color : black;
+	color:white;
+	margin:5px;
+	padding:5px;
+	
+}
+article{
+	float:left;
+	padding:20px;
+	width:80%;
+	background-color:#f1f1f1;
+	height:600px;
+}
+section:after{
+	content="";
+	display=table;
+	clear:both;
+}
+footer{
+	background-color:rgb(231,230,230);
+	padding:0;
+	text-align:left;
+	color:black;
+}
+@media(max-width:600px){
+	nav, article{
+		width:100%;
+		height:auto;
+	}
+}
+</style>
+<script type = "text/javascript" src="//code.jquery.com/jquery-3.1.0.min.js" charset="utf-8"></script>
+	<script type = "text/javascript">
+		var sel_file;
+		$(document).ready(function(){
+			$("#input_img").on("change", handleImgFileSelect);
+		});
+		function handleImgFileSelect(e){
+			var files = e.target.files;
+			var filesArr = Array.prototype.slice.call(files);
+
+			filesArr.forEach(function(f){
+				if(!f.type.match("image.*")){
+					alert("not right document");
+					return;
+				}
+				sel_file = f;
+
+				var reader = new FileReader();
+				reader.onload = function(e){
+					$("#img").attr("src", e.target.result);
+				}
+				reader.readAsDataURL(f);
+			});
+		}
+	</script>
+
+
+	</head>
+	<body>
+		<header>
+			<h2>Deep Learning Playground</h2>
+		</header>
+		<section>
+			<nav>
+				<div class = "cities">
+					<h3><a href= "#">Jongja Poomjong</a></h3>
+					<p style = "font-size:11px";>Write the detail someday</p>
+
+				</div>
+				<div class = "cities">
+					<h3><a href = "#">BuyngHaeChoong</a></h3>
+					<p style = "font-size:11px";>Write the detail someday</p>
+				</div>
+				<div class = "cities">
+					<h3>Dangdo</h3>
+					<p style = "font-size:11px";>Write the detail someday</p>
+				</div>
+				<div class = "cities">
+					<h3>Maneul</h3>
+					<p style = "font-size:11px";>Write the detail someday</p>
+				</div>
+				<div class = "cities">
+					<h3>Oi</h3>
+					<p style = "font-size:11px";>Write the detail someday</p>
+				</div>
+			</nav>
+			<article>
+				<h1>README</h1>
+				<p>Use your picture to test our deep learning models!</p>
+			
+			<form action = "http://192.168.0.55:51080/upload.php" method = "post" enctype="multipart/form-data">
+				<input type="file" name = "input_img" id = "input_img">
+				<input type = "submit" value = "Upload Image" name = "submit">
+			</form>
+			<div class="img_wrap">
+				<img id = "img" />
+			</div>
+
+			</article>
+		</section>
+		<footer>
+			<p><img src = "./photo/logo.PNG" style="width:67%; height:auto;"></p>
+		</footer>
+	</body>
+</html>
